@@ -1,20 +1,4 @@
-.inner{
-        float:left;
-        background-image: url('index1.jpg');
-        background-repeat: no-repeat;
-         position: fixed;
-         height:1000px;
 
-
-     
-    }
-    .inner1{
-        float:right;
-        margin-left: 10%;
-        background-position:relative;
-        position: relative;
-    
-    }
 	.actions a{
 		font-size: 25px;
 	font-family: arial;
@@ -22,25 +6,12 @@
 	margin-top: 50px;
 	color: gray;
 	text-align: justify;
-	
+	list-style: none;
 	text-decoration: none;	
 	border:2px solid;
 	border-radius: 2px;
 	}
-	#two h2{
-		font-size: 24px;
-		font-family: arial;
-		color:gray;
-	}
-
-.form-group input{
-  padding:10px;
-
-  border-color: green;
-}
-.inner .icons li{
-	margin-top: 40%:;
-}
+	
 .img-circle{
 	 margin: 0 0 1em;
    /* width: 6.25em;*/
