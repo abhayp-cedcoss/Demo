@@ -1,0 +1,124 @@
+package pluginsetting;
+import static org.junit.Assert.fail;
+
+import java.util.concurrent.TimeUnit;
+//import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+public class VmDemo {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @BeforeClass(alwaysRun = true)
+  public void setUp() throws Exception {
+	System.setProperty("webdriver.gecko.driver","/home/cedcoss/Pictures/geckodriver");
+   // driver = new FirefoxDriver();
+    System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+	   driver = new ChromeDriver();
+    baseUrl = "https://www.katalon.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
+  }
+ 
+  @Test
+  public void testVMDemo() throws Exception {
+    driver.get("https://codecanyon.net/user/makewebbetter/portfolio");
+    driver.findElement(By.xpath("//div[@id='content']/div/section")).click();
+    driver.findElement(By.linkText("WooCommerce Variation Master")).click();
+    System.out.println("click1");
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div[2]/div[3]/div/div[1]/div[2]/div[1]/div/p[2]/a[1]/img")).click();
+    Thread.sleep(2000);
+    JavascriptExecutor jse = (JavascriptExecutor)driver;   
+	jse.executeScript("window.scrollBy(0,800)", "");
+	driver.get("http://demo.makewebbetter.com/variation-master/product/girls-top/");
+	Thread.sleep(2000);
+    driver.findElement(By.xpath("//div[@id='primary-menu']/ul")).click();
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/varication_master_buttion_2_360-300x161.png')]")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_blue")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_l")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_pink")).click();
+    driver.findElement(By.id("attr_img_m")).click();
+    driver.findElement(By.id("attr_img_s")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004825-ether-Women-Tshirts-4911505203004648-3-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004848-ether-Women-Tshirts-4911505203004648-2-180x180.jpg')])[2]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004806-ether-Women-Tshirts-4911505203004648-4-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004848-ether-Women-Tshirts-4911505203004648-2-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004775-ether-Women-Tshirts-4911505203004648-5-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004775-ether-Women-Tshirts-4911505203004648-5.jpg')]")).click();
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004848-ether-Women-Tshirts-4911505203004648-2-180x180.jpg')])[2]")).click();
+    driver.findElement(By.id("attr_img_blue")).click();
+    driver.findElement(By.id("attr_img_l")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/bt2-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/bt1-180x180.jpg')])[2]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/bt4-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/bt3-180x180.jpg')]")).click();
+  }
+
+	
+   
+  
+
+  @AfterClass(alwaysRun = true)
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}
+
+
+

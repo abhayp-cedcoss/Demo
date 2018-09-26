@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;pluginsetting.TestJUnit.java&apos; to &apos;TestJunit.java&apos;&#x0A;- Original project: &apos;Variationmaster&apos;&#x0A;- Original element: &apos;pluginsetting.TestJUnit.java&apos;&#x0A;- Renamed element: &apos;pluginsetting.TestJunit.java&apos;" description="Rename compilation unit &apos;TestJUnit.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;pluginsetting{TestJUnit.java" name="TestJunit.java" references="false" stamp="1530800579049" version="1.0"/>
+</session>

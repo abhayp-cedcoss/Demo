@@ -1,0 +1,224 @@
+package pluginsetting;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.interactions.Actions;
+import java.lang.*;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.Select;
+
+import com.google.common.collect.Table.Cell;
+import com.opencsv.CSVReader;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException; 
+import java.io.BufferedReader;
+
+public class Admin {
+	public static WebDriver drive;
+	public void variable_product()throws InterruptedException
+	{
+		System.out.println("function invoked suuccefully");
+		Actions action = new Actions(drive);
+		action.moveToElement(drive.findElement(By.linkText("Products"))).build().perform();
+		Thread.sleep(2000);
+		drive.findElement(By.linkText("All Products")).click();	
+		Thread.sleep(2000);
+		JavascriptExecutor jse = (JavascriptExecutor)drive;   
+		jse.executeScript("window.scrollBy(0,100)", "");
+		Thread.sleep(2000);
+		 Select sl =new Select(drive.findElement(By.id("dropdown_product_type")));	
+		 sl.selectByValue("variable");
+		 drive.findElement(By.name("filter_action")).submit();
+		 Thread.sleep(2000);
+		 drive.findElement(By.linkText("Shoes")).click();
+		 Thread .sleep(1000);
+		 jse.executeScript("window.scrollBy(0,400)", "");
+		 drive.findElement(By.linkText("Variation Swatches")).click();
+		 Thread .sleep(2000);
+		 drive.findElement(By.tagName("h4")).click();
+		 Thread.sleep(2000);
+		 drive.findElement(By.name("ced_vm_label_brand")).clear();
+		 drive.findElement(By.name("ced_vm_label_brand")).sendKeys("Brand_name");;
+		 Select color=new Select(drive.findElement(By.name("ced_vm_dt_brand")));
+		 color.selectByValue("2");
+		 
+		 Select display_size=new Select(drive.findElement(By.name("ced_vm_ds_brand")));
+		 display_size.selectByValue("3");
+
+		 Select circle=new Select(drive.findElement(By.name("ced_vm_ds2_brand")));
+		 circle.selectByValue("2");
+		 jse.executeScript("window.scrollBy(0,500)", "");
+
+		 Select display_name=new Select(drive.findElement(By.name("ced_vm_dn_brand")));
+		 display_name.selectByValue("1");
+		 Thread.sleep(2000);
+		 
+		 drive.findElement(By.className("ced-vm-sub-panel-heading")).click();
+		 Thread.sleep(2000);
+		 Select variation_image=new Select(drive.findElement(By.name("ced_vm_sdt_Liberty")));
+		 
+		 variation_image.selectByValue("1");
+		 drive.findElement(By.tagName("button")).click();
+		 Thread.sleep(3000);
+			System.out.println("click on browse button");
+
+		 drive.findElement(By.cssSelector(".ced-vm-scimage-upload")).click();
+		 
+		// drive.findElement(By.xpath(".//*[@id='__attachments-view-39']/li[1]/div/div")).click();
+		 Thread.sleep(2000);
+		System.out.println("clicked successfully");
+
+		 drive.findElement(By.className("attachment save-ready")).click(); ///html/body/div[15]/div[1]/div/div/div[4]/div/ul/li[1]
+		 System.out.println("image selected ");
+
+		 Thread.sleep(2000);
+		 WebElement web=drive.findElement(By.className("media-toolbar"));
+		 Thread.sleep(1000);
+		 System.out.println("image selected ");
+
+		 web.findElement(By.tagName("button")).click();
+		 
+		// drive.findElement(By.cssSelector(".wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large")).click();
+		
+	}
+
+	public static void main(String[] args) throws InterruptedException, IOException{
+		
+		Admin as=new Admin();
+
+		
+		System.out.println("launching chrome browser");
+		System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+		drive = new ChromeDriver();
+		drive.navigate().to("https://localhost/shopping/wp-admin");
+		Thread.sleep(2000);
+		drive.manage().window().maximize();
+		drive.findElement(By.id("user_login")).clear();
+		drive.findElement(By.id("user_login")).sendKeys("admin");
+		drive.findElement(By.id("user_pass")).clear();
+		drive.findElement(By.id("user_pass")).sendKeys("password");
+		drive.findElement(By.id("rememberme")).click();
+		drive.findElement(By.id("wp-submit")).submit();
+		System.out.println("successfully logged in");
+
+//**************** Moving to plugin setting and activating  woocommerce variation master **************************//
+
+		Actions action = new Actions(drive);
+		action.moveToElement(drive.findElement(By.linkText("Plugins"))).build().perform();
+		Thread.sleep(2000);
+		drive.findElement(By.linkText("Installed Plugins")).click();	
+		Thread.sleep(3000);
+		JavascriptExecutor jse = (JavascriptExecutor)drive;   
+		jse.executeScript("window.scrollBy(0,900)", "");
+		drive.findElement(By.id("toplevel_page_ced-vm-settings")).click();
+		Thread.sleep(2000);
+		System.out.println("function calling start");
+		as.variable_product();
+
+		
+		
+//*********************  plugin Global Setting  starts ****************************************/		
+		
+/*
+		
+		WebElement  checkbox1=  drive.findElement(By.name("ced-vm-enable-swatch"));
+		if(!checkbox1.isSelected()){
+			checkbox1.click();
+		}
+		WebElement  checkbox2=   drive.findElement(By.name("ced-vm-enable-swatch-for-shop"));
+		if(!checkbox2.isSelected()){
+			checkbox2.click();
+		}
+		WebElement  checkbox3=  drive.findElement(By.name("ced-vm-show-varoations-btn-for-variation"));
+		if(!checkbox3.isSelected()){
+			checkbox3.click();
+		}
+		WebElement  checkbox4=drive.findElement(By.name("ced_vm_enable_pwg"));
+		if(!checkbox4.isSelected()){
+			checkbox4.click();
+		}
+		drive.findElement(By.name("save")).submit();
+		Thread.sleep(1000);
+		
+		
+		WebElement  checkbox5= drive.findElement(By.name("ced_vm_enable_this"));
+		if(!checkbox5.isSelected()){
+			checkbox5.click();
+		}
+		WebElement  checkbox6= drive.findElement(By.name("ced_vm_at"));
+		if(!checkbox6.isSelected()){
+			checkbox6.click();
+		}
+		WebElement  checkbox7= drive.findElement(By.name("dl"));
+		if(!checkbox7.isSelected()){
+			checkbox7.click();
+		}
+		WebElement  checkbox8= drive.findElement(By.name("selectswatchbor"));
+
+		if(!checkbox8.isSelected()){
+			checkbox8.click();
+		}
+		JavascriptExecutor js=(JavascriptExecutor)drive;
+		js.executeScript("window.scrollBy(0,400)", "");
+		Select sl=new Select(drive.findElement(By.id("vas")));
+		sl.selectByVisibleText("Tooltip");
+		Select sl1=new Select(drive.findElement(By.name("ced_vm_atds2")));
+		sl1.selectByVisibleText("CIRCLE");
+		Select s2=new Select(drive.findElement(By.name("ced_vm_atds1")));
+		s2.selectByVisibleText("60px * 60px");
+
+		Select sl3=new Select(drive.findElement(By.name("ced_vm_shop_size_attr")));
+		sl3.selectByVisibleText("30px * 30px");
+
+		WebElement  checkbox9= drive.findElement(By.name("ced_vm_usg"));
+
+		if(!checkbox9.isSelected()){
+			checkbox9.click();
+		}
+		WebElement  checkbox10= drive.findElement(By.name("ced_vm_featured"));
+
+		if(!checkbox10.isSelected()){
+			checkbox10.click();
+		}
+		WebElement  checkbox11= drive.findElement(By.id("ced_vm_slider_featured"));
+
+		if(!checkbox11.isSelected()){
+			checkbox11.click();
+		}
+		*/
+//*******************************************IMPORT/EXPORT Setting *************************************////
+		
+	/*	drive.findElement(By.linkText("Import/Export")).click();
+		Thread.sleep(2000);
+		drive.findElement(By.linkText("Export Attributes")).click();
+		 
+		Thread.sleep(5000);
+		CSVReader readcsv = new CSVReader(new FileReader("/home/cedcoss/Downloads/demo.txt"));
+		List myData = readcsv.readAll();
+		System.out.println("file readed successfully");
+		Thread.sleep(7000);
+		
+		FileWriter writecsv = new FileWriter ("/home/cedcoss/Downloads/attribute_terms.csv");
+		System.out.println("file created  succesfully");
+
+	//	writecsv.append("7,color,Green,2,http://192.168.0.214/shopping/wp-content/uploads/2017/11/PRODUCTPAGE-ENHANCEMENT.png,#0000ff");
+		writecsv.append("hello");
+		writecsv.append('\n');
+		System.out.println("csv  written succesfully");
+		Thread.sleep(3000);
+		drive.close();*/
+
+	}
+
+}

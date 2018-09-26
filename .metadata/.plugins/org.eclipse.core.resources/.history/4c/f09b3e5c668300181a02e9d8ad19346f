@@ -1,0 +1,226 @@
+package pluginsetting;
+import static org.junit.Assert.fail;
+
+import java.util.concurrent.TimeUnit;
+//import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+public class VmDemo {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @BeforeClass(alwaysRun = true)
+  public void setUp() throws Exception {
+	System.setProperty("webdriver.gecko.driver","/home/cedcoss/Pictures/geckodriver");
+   // driver = new FirefoxDriver();
+    System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+	   driver = new ChromeDriver();
+    baseUrl = "https://www.katalon.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
+  }
+ 
+  @Test
+  public void testVMDemo() throws Exception {
+    driver.get("https://codecanyon.net/user/makewebbetter/portfolio");
+    driver.findElement(By.xpath("//div[@id='content']/div/section")).click();
+    driver.findElement(By.linkText("WooCommerce Variation Master")).click();
+    System.out.println("click1");
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//img[contains(@src,'https://camo.envatousercontent.com/a2a8e997d600723b67908949b251c4c790e1b160/687474703a2f2f646f63732e6d616b657765626265747465722e636f6d2f62616e6e6572732f776f6f636f6d6d657263652d766172696174696f6e2d6d61737465722f312e332e312f66726f6e74656e645f64656d6f2e6a7067')]")).click();
+    Thread.sleep(2000);
+    JavascriptExecutor jse = (JavascriptExecutor)driver;   
+	jse.executeScript("window.scrollBy(0,300)", "");
+    driver.findElement(By.id("attr_img_Black")).click();
+    System.out.println("click2");
+    Thread.sleep(2000);
+   // driver.findElement(By.xpath("//div[@id='product-2391']/div[2]/form/div[3]")).click();
+    System.out.println("click3");
+   /* driver.findElement(By.id("attr_img_Blue")).click();
+    driver.findElement(By.id("attr_img_M")).click();
+    driver.findElement(By.xpath("/html/body/div[2]/div/aside/div[2]/a/img")).click();
+    System.out.println("click4");*/
+   
+    //--- Gallery  feature testing------------------//
+    
+    driver.get("http://demo.makewebbetter.com/variation-master/product/girls-top/");
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/varication_master_buttion_2_360-300x161.png')]")).click();
+    Thread.sleep(2000);
+    jse.executeScript("window.scrollBy(0,300)", "");
+    driver.findElement(By.id("attr_img_pink")).click();
+    System.out.println("click4");
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_l")).click();
+    Thread.sleep(2000);
+    System.out.println("click5");
+    driver.findElement(By.id("attr_img_m")).click();
+    Thread.sleep(2000);
+    System.out.println("click6");
+    driver.findElement(By.id("attr_img_s")).click();
+    Thread.sleep(2000);
+    System.out.println("click7");
+    driver.findElement(By.id("attr_img_blue")).click();
+    Thread.sleep(2000);
+    System.out.println("click8");
+    driver.findElement(By.id("attr_img_l")).click();
+    Thread.sleep(2000);
+    System.out.println("click9");
+  //  driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/bt1-480x600.jpg')])[2]")).click();
+   // Thread.sleep(2000);
+   // driver.findElement(By.className("pswp__item")).click();
+      //driver.findElement(By.xpath("//body[@id='blog']/div[4]/div[2]/div/div[2]")).click();
+    Thread.sleep(2000);
+    
+//------ Variation Swatches feature ------------//
+    
+    
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/varication_master_buttion_3_360-300x160.png')])[2]")).click();
+     Thread.sleep(2000);
+    System.out.println("click10");
+    JavascriptExecutor jses = (JavascriptExecutor)driver;   
+  	jses.executeScript("window.scrollBy(0,300)", "");
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_black")).click();
+    Thread.sleep(2000);
+    System.out.println("click11");
+    driver.findElement(By.id("attr_img_m")).click();
+    Thread.sleep(2000);
+    System.out.println("click12");
+    driver.findElement(By.id("attr_img_pink")).click();
+    Thread.sleep(2000);
+    System.out.println("click13");
+    driver.findElement(By.id("attr_img_xl")).click();
+    Thread.sleep(2000);
+    System.out.println("click14");
+    driver.findElement(By.id("attr_img_red")).click();
+    Thread.sleep(2000);
+    System.out.println("click15");
+    driver.findElement(By.id("attr_img_l")).click();
+    Thread.sleep(2000);
+    System.out.println("click16");
+    
+//-----------------------------Update cart feature ----------------------------------------//    
+    
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/varication_master_buttion_3_360-300x160.png')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/demo_360-300x165.png')]")).click();
+    Thread.sleep(5000);
+    jses.executeScript("window.scrollBy(0,200)", "");
+    driver.findElement(By.className("changemenow")).click();
+   // driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/11505203004825-ether-Women-Tshirts-4911505203004648-3-600x600.jpg')]")).click();
+    System.out.println("click17");
+    Thread.sleep(2000);
+    //driver.findElement(By.xpath("//body[@id='blog']/div[4]/div[2]/div/div[2]")).click();
+    Thread.sleep(2000);
+    System.out.println("click18");
+    driver.findElement(By.id("attr_img_blue")).click();
+    Thread.sleep(2000);
+    System.out.println("click19");
+    driver.findElement(By.id("attr_img_l")).click();
+    Thread.sleep(2000);
+    System.out.println("click20");
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/varication_master_buttion_3_360-300x160.png')])[2]")).click();
+    Thread.sleep(2000);
+    System.out.println("click21");
+    driver.findElement(By.id("attr_img_blue")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_m")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_pink")).click();
+    Thread.sleep(2000);
+    driver.findElement(By.id("attr_img_xs")).click();
+    System.out.println("click22");
+    Thread.sleep(2000);
+   /* driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/t2.jpg')]")).click();
+    driver.findElement(By.xpath("(//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/11/demo_360-300x165.png')])[2]")).click();
+    driver.findElement(By.linkText("update")).click();
+    driver.findElement(By.id("attr_img_yellow")).click();
+    driver.findElement(By.id("attr_img_m")).click();
+    driver.findElement(By.id("ced-vm-variation-container")).click();
+    driver.findElement(By.xpath("//button[@type='submit']")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2013/06/varication_master_bu0-300x161.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/n2-180x180.jpg')]")).click();
+    driver.findElement(By.linkText("Next")).click();
+    driver.findElement(By.linkText("Previous")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/n3-180x180.jpg')]")).click();
+    driver.findElement(By.xpath("//img[contains(@src,'http://demo.makewebbetter.com/variation-master/wp-content/uploads/2017/10/n2-180x180.jpg')]")).click();
+    driver.findElement(By.id("attr_img_pink")).click();
+    driver.findElement(By.id("attr_img_m")).click();
+    driver.findElement(By.linkText("Next")).click();
+    driver.findElement(By.linkText("Previous")).click();
+    driver.findElement(By.linkText("Request For Personal Demo")).click();
+    driver.findElement(By.name("your-name")).click();
+    driver.findElement(By.name("your-name")).click();
+    // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | name=your-name | ]]
+    driver.findElement(By.name("your-name")).click();
+    driver.findElement(By.name("your-name")).clear();
+    Thread.sleep(2000);
+    driver.findElement(By.name("your-name")).sendKeys("test");
+    driver.findElement(By.id("blog")).click();
+    driver.findElement(By.name("your-email")).click();
+    driver.findElement(By.name("your-email")).clear();
+    Thread.sleep(2000);
+    driver.findElement(By.name("your-email")).sendKeys("test@gmail.com");
+    driver.findElement(By.xpath("//div[@id='wpcf7-f2162-p2165-o1']/form/p[3]/span/span")).click();
+    driver.findElement(By.name("checkbox-419[]")).click();
+    driver.findElement(By.xpath("//input[@value='Send']")).click();
+    driver.findElement(By.id("blog")).click();*/
+  }
+
+  @AfterClass(alwaysRun = true)
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}
+
+
+

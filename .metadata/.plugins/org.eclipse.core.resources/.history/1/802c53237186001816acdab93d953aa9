@@ -1,0 +1,94 @@
+package pluginsetting;
+import static org.junit.Assert.fail;
+
+import java.util.concurrent.TimeUnit;
+//import org.junit.Test;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterClass;
+
+public class VmDemo {
+  private WebDriver driver;
+  private String baseUrl;
+  private boolean acceptNextAlert = true;
+  private StringBuffer verificationErrors = new StringBuffer();
+
+  @BeforeClass(alwaysRun = true)
+  public void setUp() throws Exception {
+	System.setProperty("webdriver.gecko.driver","/home/cedcoss/Pictures/geckodriver");
+   // driver = new FirefoxDriver();
+    System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+	   driver = new ChromeDriver();
+    baseUrl = "https://www.katalon.com/";
+    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().window().maximize();
+  }
+ 
+  @Test
+  public void testVMDemo() throws Exception {
+    driver.get("https://codecanyon.net/user/makewebbetter/portfolio");
+    driver.findElement(By.xpath("//div[@id='content']/div/section")).click();
+    driver.findElement(By.linkText("WooCommerce Variation Master")).click();
+    System.out.println("click1");
+    Thread.sleep(2000);
+    driver.findElement(By.xpath("//img[contains(@src,'https://camo.envatousercontent.com/a2a8e997d600723b67908949b251c4c790e1b160/687474703a2f2f646f63732e6d616b657765626265747465722e636f6d2f62616e6e6572732f776f6f636f6d6d657263652d766172696174696f6e2d6d61737465722f312e332e312f66726f6e74656e645f64656d6f2e6a7067')]")).click();
+    Thread.sleep(2000);
+    JavascriptExecutor jse = (JavascriptExecutor)driver;   
+	jse.executeScript("window.scrollBy(0,300)", "");
+   
+  }
+
+  @AfterClass(alwaysRun = true)
+  public void tearDown() throws Exception {
+    driver.quit();
+    String verificationErrorString = verificationErrors.toString();
+    if (!"".equals(verificationErrorString)) {
+      fail(verificationErrorString);
+    }
+  }
+
+  private boolean isElementPresent(By by) {
+    try {
+      driver.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
+  }
+
+  private boolean isAlertPresent() {
+    try {
+      driver.switchTo().alert();
+      return true;
+    } catch (NoAlertPresentException e) {
+      return false;
+    }
+  }
+
+  private String closeAlertAndGetItsText() {
+    try {
+      Alert alert = driver.switchTo().alert();
+      String alertText = alert.getText();
+      if (acceptNextAlert) {
+        alert.accept();
+      } else {
+        alert.dismiss();
+      }
+      return alertText;
+    } finally {
+      acceptNextAlert = true;
+    }
+  }
+}
+
+
+

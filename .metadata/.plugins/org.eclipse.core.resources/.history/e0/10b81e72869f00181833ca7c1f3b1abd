@@ -1,0 +1,39 @@
+package Test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
+public class Demo {
+	 public WebDriver driver;
+	 private String baseUrl;
+	 
+	 public void login() throws Exception{
+		    driver.get("http://www.demo.guru99.com/V4/");
+		    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		    driver.manage().window().maximize();
+		    driver.findElement(By.name("uid")).clear();
+		    driver.findElement(By.name("uid")).sendKeys("mngr148665");
+		    Thread.sleep(2000);
+		    driver.findElement(By.name("password")).clear();
+		    driver.findElement(By.name("password")).sendKeys("YnUdAna");
+		    Thread.sleep(2000);
+		    driver.findElement(By.name("btnLogin")).click();
+		    Thread.sleep(2000);
+	 }
+	public static void main(String[] args)throws Exception {
+
+		System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+		 WebDriver driver = new ChromeDriver();
+	    String  baseUrl = "http://www.demo.guru99.com/V4/";
+	    Demo d=new Demo();
+	    d.login();
+	    
+
+
+	}
+
+}

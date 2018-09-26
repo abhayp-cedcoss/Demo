@@ -1,0 +1,43 @@
+package demo;
+import java.util.concurrent.TimeUnit;
+import java.lang.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class MakeWebBetter {
+
+	 public static WebDriver driver;
+	 
+	    public static void main(String s[]) throws InterruptedException  {
+		System.out.println("launching chrome browser");
+		System.setProperty("webdriver.chrome.driver","/home/cedcoss/Pictures/chromedriver");
+	    driver = new ChromeDriver();
+	    driver.get("https://www.makewebbetter.com");
+		driver.manage().window().maximize();
+        driver.findElement(By.linkText("HOME")).click(); 
+        Thread.sleep(2 * 1000);
+        driver.findElement(By.linkText("GET STARTED")).click();
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollBy(0,2000)", "");
+        driver.findElement(By.className("ea-item-head")).click();
+            Thread.sleep(2 * 1000);
+        System.out.println("step2");
+
+        driver.findElement(By.className("ea-item-head")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath(".//*[@id='root']/div/div[2]/button")).click();
+        Thread.sleep(2000);
+
+        driver.findElement(By.xpath(".//*[@id='root']/div/div[2]/button")).click();
+
+
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		 //  driver.quit();
+		   
+		   
+	}
+
+}
